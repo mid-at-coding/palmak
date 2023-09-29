@@ -1,6 +1,8 @@
 # palmak
 ## A simple and lightweight palette maker
 
+(currently *nix only)
+
 # Features
 - True color support
 - Simple CLI interface
