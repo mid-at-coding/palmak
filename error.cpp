@@ -25,7 +25,6 @@ std::string Logger::levelToStr(int sev){
 	}
 }
 void Logger::log(std::string msg, severity sev, int indentation){
-	std::cout << (int)sev << " " << (int)outputThreshold << std::endl;
 	if(sev < outputThreshold)
 		return;
 	std::cout <<levelToStr(sev);
