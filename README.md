@@ -10,6 +10,8 @@
 
 # Basic usage
 
+https://raw.githubusercontent.com/mid-at-coding/palmak/main/showcase.mp4
+
 palmak { hex | hsv } [ options ]
 
 ## Options
