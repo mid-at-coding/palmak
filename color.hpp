@@ -2,6 +2,7 @@
 #define COLOR_H
 
 #include <optional>
+#include <string>
 
 struct HSV;
 
@@ -14,8 +15,6 @@ struct RGB{
 struct HSV{
 	int h,s,v;
 	HSV& operator=(const RGB& in);
-	HSV& operator+(const HSV& in);
-	HSV& operator-(const HSV& in);
 	HSV& operator+=(const HSV& in);
 	HSV& operator-=(const HSV& in);
 };
@@ -36,4 +35,6 @@ public :
 	void set(HSV v);
 };
 
+
+std::string RGBtos(const RGB& in);
 #endif

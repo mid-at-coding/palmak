@@ -2,6 +2,7 @@
 #include <iostream>
 #include "error.hpp"
 #include <sstream>
+#include "color.hpp"
 
 static void tolower(std::string& in){
 	for(int i = 0; i < in.size(); i++)

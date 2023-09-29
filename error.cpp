@@ -1,29 +1,31 @@
 #include <iostream>
 #include "error.hpp"
+#include "formatting.hpp"
 
 // this file should really be renamed
 
-Logger::severity Logger::outputThreshold = Logger::DEBUG;
+Logger::severity Logger::outputThreshold = Logger::INFO;
 
 std::string Logger::levelToStr(int sev){
 	switch(sev){
 		case DEBUG:
-			return "[DEBUG]";
+			return "[DEBUG] ";
 		case INFO:
-			return "[INFO]";
+			return "[INFO] ";
 		case WARN:
-			return "[WARN]";
+			return "[WARN] ";
 		case NONFATAL:
-			return "[NONFATAL]";
+			return "[NONFATAL] ";
 		case FATAL: 
-			return "[FATAL]";
+			return colorString("[FATAL] ",Color(RGB{255,0,0}));
 		case NOTAG:
 			return "";
 		default: // ??
-			return "[FATAL]";
+			return "[FATAL] ";
 	}
 }
 void Logger::log(std::string msg, severity sev, int indentation){
+	std::cout << (int)sev << " " << (int)outputThreshold << std::endl;
 	if(sev < outputThreshold)
 		return;
 	std::cout <<levelToStr(sev);

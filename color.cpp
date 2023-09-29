@@ -13,7 +13,7 @@ std::optional<HSV> Color::getHSV(){
 	return {hsv};
 }
 
-HSV& HSV::operator+(const HSV& in){
+HSV& HSV::operator+=(const HSV& in){
 	// hue
 	if(in.h + h > 360)
 		h = std::abs(in.h - h);
@@ -34,7 +34,7 @@ HSV& HSV::operator+(const HSV& in){
 	return (*this);
 }
 
-HSV& HSV::operator-(const HSV& in){
+HSV& HSV::operator-=(const HSV& in){
 	// hue
 	if(in.h > h)
 		h = 360 - (h - in.h);
@@ -53,17 +53,6 @@ HSV& HSV::operator-(const HSV& in){
 	else
 		v -= in.v;
 	return(*this);
-}
-
-
-HSV& HSV::operator+=(const HSV& in){
-	(*this) = (*this) - in;
-	return (*this);
-}
-HSV& HSV::operator-=(const HSV& in){
-	(*this) = (*this) + in;
-	return (*this);
-
 }
 
 void Color::set(RGB v){
@@ -87,4 +76,9 @@ Color::Color(RGB v){
 
 Color::Color(){
 
+}
+
+
+std::string RGBtos(const RGB& in){
+	return std::to_string(in.r) + ", " + std::to_string(in.g) + ", " + std::to_string(in.b);
 }
