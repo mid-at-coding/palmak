@@ -29,3 +29,5 @@ vs / valueshift - the amount to shift the value of the color, in % (default: -10
 ss / satshift - the amount to shift the saturation of the color, in % (default: 0%)
 
 nc / nocolor - disable color output
+
+v / verbose - enable debug output

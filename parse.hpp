@@ -9,6 +9,7 @@ struct arguments{
 	int valueshift = -10;
 	int satshift = 12;
 	bool color = true;
+	bool verbose = false;
 };
 
 arguments parse(std::vector<std::string> args);

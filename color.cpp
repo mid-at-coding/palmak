@@ -2,6 +2,22 @@
 #include <cmath>
 #include <optional>
 
+static int addHue(const int h1, const int h2){
+	if(h1 + h2 > 360)
+		return std::abs(h1 - h2);
+	if(h1 + h2 < 0)
+		return 360 - std::abs(h1 - h2);
+	return h1 + h2;
+}
+
+static int addVal(const int v1, const int v2){
+	if(v1 + v2 > 100)
+		return 100;
+	if(v1 + v2 < 0)
+		return 0;
+	return v1 + v2;
+}
+
 std::optional<RGB> Color::getRGB(){
 	if(!_set)
 		return {};
@@ -15,43 +31,26 @@ std::optional<HSV> Color::getHSV(){
 
 HSV& HSV::operator+=(const HSV& in){
 	// hue
-	if(in.h + h > 360)
-		h = std::abs(in.h - h);
-	else
-		h += in.h;
+	h = addHue(h, in.h);
 	
 	// saturation
-	if(in.s + s > 100)
-		s = 100;
-	else
-		s += in.s;
+	s = addVal(s, in.s);
 
 	// value
-	if(in.v + v > 100)
-		v = 100;
-	else
-		v += in.v;
+	v = addVal(v, in.v);
+
 	return (*this);
 }
 
 HSV& HSV::operator-=(const HSV& in){
 	// hue
-	if(in.h > h)
-		h = 360 - (h - in.h);
-	else
-		h -= in.h;
-
+	h = addHue(h, -in.h);
+	
 	// saturation
-	if(in.s > s)
-		s = 0;
-	else
-		s -= in.s;
+	s = addVal(s, -in.s);
 
 	// value
-	if(in.v > v)
-		v = 0;
-	else
-		v -= in.v;
+	v = addVal(v, -in.v);
 	return(*this);
 }
 

@@ -143,6 +143,12 @@ arguments parse(std::vector<std::string> args){
 			validCommand = true;
 			ret.color = false;
 		}
+		if(args[i] == "v" ||
+		   args[i] == "verbose"){
+			validCommand = true;
+			ret.verbose = true;
+			Logger::outputThreshold = Logger::DEBUG;
+		}
 		if(!validCommand){
 			logger.log("Invalid command \"" + args[i] + "\", run palmak help for help", Logger::FATAL);
 			exit(0);
