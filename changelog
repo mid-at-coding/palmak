@@ -1,7 +1,10 @@
+1.1:
 - changed color out of bounds to handle cases where an addition had a negative
 component and vice versa
 - changed color generation to work better with out of bounds colors on either
 side
 - changed color output to pad small RGB values e.g. rgb(1,2,3) -> 010203 as
 opposed to 123
-- added new option: v[erbose]
+- added new option: v[erbose] 
+1.2:
+- added new option: n[o]t[ext]

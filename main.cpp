@@ -15,7 +15,7 @@
 #include "formatting.hpp"
 #include <sstream>
 
-void outputColors(std::vector<Color>, bool);
+void outputColors(std::vector<Color>, const bool, const bool);
 
 std::vector<Color> calculateColors(arguments);
 
@@ -37,10 +37,10 @@ int main(int argc, char** argv){
 		return 0;
 	}
 	args = parse(argv_cpp);
-	outputColors(calculateColors(args), args.color);
+	outputColors(calculateColors(args), args.color, args.text);
 }
 
-void outputColors(std::vector<Color> args, bool color){
+void outputColors(std::vector<Color> args, const bool color, const bool text){
 	Logger logger;
 	std::string out;
 	std::stringstream ss;
@@ -50,15 +50,20 @@ void outputColors(std::vector<Color> args, bool color){
 		logger.log("hue: " + std::to_string(args[i].getHSV().value().h), Logger::DEBUG);
 		logger.log("sat: " + std::to_string(args[i].getHSV().value().s), Logger::DEBUG);
 		logger.log("val: " + std::to_string(args[i].getHSV().value().v), Logger::DEBUG);
-		ss << std::hex << std::uppercase << std::setw(2) << std::setfill('0') <<
-			(unsigned)(args[i].getRGB().value().r &0xFF);
-		ss << std::hex << std::uppercase << std::setw(2) << std::setfill('0') <<
-			(unsigned)(args[i].getRGB().value().g &0xFF);
-		ss << std::hex << std::uppercase << std::setw(2) << std::setfill('0') <<
-			(unsigned)(args[i].getRGB().value().b &0xFF);
-		ss >> out;
+		if(text){
+			ss << std::hex << std::uppercase << std::setw(2) << std::setfill('0') <<
+				(unsigned)(args[i].getRGB().value().r &0xFF);
+			ss << std::hex << std::uppercase << std::setw(2) << std::setfill('0') <<
+				(unsigned)(args[i].getRGB().value().g &0xFF);
+			ss << std::hex << std::uppercase << std::setw(2) << std::setfill('0') <<
+				(unsigned)(args[i].getRGB().value().b &0xFF);
+			ss >> out;
+		}
+		else{
+			out = "      "; // this shit is so easy
+		}
 		if(color)
-			out = colorString(out, args[i], true) + colorString("\u2588", args[i]);
+			out = colorString(" " + out + " ", args[i], true); //+ colorString("\u2588", args[i]);
 		std::cout << out << std::endl;
 	}
 }

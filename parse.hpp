@@ -4,12 +4,13 @@
 
 struct arguments{
 	Color base;
-	unsigned width = 2;
+	int width = 2;
 	int hueshift = 9;
 	int valueshift = -10;
 	int satshift = 12;
 	bool color = true;
 	bool verbose = false;
+	bool text = true;
 };
 
 arguments parse(std::vector<std::string> args);

@@ -31,4 +31,6 @@ ss / satshift - the amount to shift the saturation of the color, in % (default: 
 
 nc / nocolor - disable color output
 
+nt / notext - disable text output
+
 v / verbose - enable debug output

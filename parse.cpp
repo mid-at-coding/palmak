@@ -37,6 +37,10 @@ static HSV cslToHSV(std::string inp){
 }
 static RGB hexToRGB(std::string inp){
 	Logger logger;
+	if(inp.size() < 6){
+		logger.log("Hex input shorter than 6 characters", Logger::FATAL);
+		exit(0);
+	}
 	std::string color[3] = {
 		inp.substr(0,2),
 		inp.substr(2,2),
@@ -116,7 +120,10 @@ arguments parse(std::vector<std::string> args){
 		if(args[i] == "c" ||
 		   args[i] == "count"){
 			validCommand = true;
-			ret.width = oneArgCMD(args, i, "Invalid count!");
+			if ((ret.width = oneArgCMD(args, i, "Invalid count!")) < 0){
+				logger.log("Invalid count!", Logger::FATAL);
+				exit(0);
+			}
 		}
 
 		if(args[i] == "hs" ||
@@ -142,12 +149,21 @@ arguments parse(std::vector<std::string> args){
 		   args[i] == "nocolor"){
 			validCommand = true;
 			ret.color = false;
+			if(ret.text == false)
+				logger.log("Both text and color disabled, are you sure you just want blank output?", Logger::WARN);
 		}
 		if(args[i] == "v" ||
 		   args[i] == "verbose"){
 			validCommand = true;
 			ret.verbose = true;
 			Logger::outputThreshold = Logger::DEBUG;
+		}
+		if(args[i] == "nt" ||
+		   args[i] == "notext"){
+			validCommand = true;
+			ret.text = false;
+			if(ret.color == false)
+				logger.log("Both text and color disabled, are you sure you just want blank output?", Logger::WARN);
 		}
 		if(!validCommand){
 			logger.log("Invalid command \"" + args[i] + "\", run palmak help for help", Logger::FATAL);
@@ -171,6 +187,7 @@ void helpText(){
 	logger.log("h[ue]s[hift]		Specificy the amount and direction of the hueshift, in degrees (default 9)",Logger::NOTAG,1);
 	logger.log("v[alue]s[hift]	Specificy the amount and direction of the value shift, in % (default -10%)",Logger::NOTAG,1);
 	logger.log("s[at]s[hift]		Specificy the amount and direction of the saturation shift, in degrees (default 12)",Logger::NOTAG,1);
-	logger.log("n[o]c[olor]		Disable color output(by default, palmak tries to output in color)",Logger::NOTAG,1);
+	logger.log("n[o]c[olor]		Disable color output",Logger::NOTAG,1);
+	logger.log("n[o]t[ext]		Disable text, only output colors",Logger::NOTAG,1);
 
 }
