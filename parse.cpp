@@ -176,7 +176,7 @@ arguments parse(std::vector<std::string> args){
 
 void helpText(){
 	Logger logger;	
-	logger.log("Pal[lete]Mak[er] v1.0 by catto",Logger::NOTAG);
+	logger.log("Pal[lete]Mak[er] v1.2 by catto",Logger::NOTAG);
 	logger.log("A lightweight, simple pallete maker",Logger::NOTAG);
 	logger.log("Usage: palmak {h[ex] | hsv} [options]",Logger::NOTAG);
 	logger.log("arguments:",Logger::NOTAG);
