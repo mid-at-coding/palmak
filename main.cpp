@@ -33,7 +33,8 @@ int main(int argc, char** argv){
 	}
 	Logger logger;
 	if(argc < 2){
-		logger.log("Not enough arguments! Run palmak help for usage", Logger::FATAL);
+		logger.log("Not enough arguments, displaying help text instead", Logger::INFO);
+		helpText();
 		return 0;
 	}
 	args = parse(argv_cpp);
