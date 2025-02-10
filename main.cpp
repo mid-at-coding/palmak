@@ -1,4 +1,4 @@
-/*	palmak 1.0 made by catto
+/*	palmak 1.2 made by catto
  *	You can use this for anything you want
  *	If you use this code credit me
  *	cattodoameow@proton.me
