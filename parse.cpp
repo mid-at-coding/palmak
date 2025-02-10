@@ -16,7 +16,7 @@ static HSV cslToHSV(std::string inp){
 		if(inp[i] == ','){
 			k++;
 			if(k > 3){
-				logger.log("HSV input too long, ignoring extra values", Logger::NONFATAL);
+				logger.log("HSV input too long, ignoring extra values", Logger::WARN);
 				break;
 			}
 		}
@@ -38,8 +38,8 @@ static HSV cslToHSV(std::string inp){
 static RGB hexToRGB(std::string inp){
 	Logger logger;
 	if(inp.size() < 6){
-		logger.log("Hex input shorter than 6 characters", Logger::FATAL);
-		exit(0);
+		logger.log("Hex input shorter than 6 characters!", Logger::NONFATAL);
+		return {0,0,0};
 	}
 	std::string color[3] = {
 		inp.substr(0,2),
